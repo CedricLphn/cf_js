@@ -18,15 +18,15 @@ if(timer){
     clearInterval(timer);
 }
 
-timer = setInterval(function(){
-    if(night == true) {
-        night =  false;
-    }else {
-        night = true;
-    }
-    console.log(night);
+// timer = setInterval(function(){
+//     if(night == true) {
+//         night =  false;
+//     }else {
+//         night = true;
+//     }
+//     console.log(night);
 
-}, 2000);
+// }, 2000);
 
 /*************************
  *                       *
@@ -78,11 +78,14 @@ var boutique = {
 
 
 function generateMonster() {
-    let name = ["Rat", "Loup", "Tauren", "Aigle", "Ananas"];
-    let suffix = ["de la nuit", "mutant", "sauvage", "assassin"];
+    let name = ["Rat", "Loup", "Tauren", "Aigle", "Ananas", "Cactus"];
+    let suffix = ["de la nuit", "mutant", "affamé", "assassin"];
+
+    console.log(Math.floor(Math.random() * (name.length) + 1));
+    console.log(Math.floor(Math.random() * (suffix.length)) + 1);
 
 
-    return Math.random * (0- name.length) + name.length + " " + Math.random * (0- suffix.length) + suffix.length;
+    return name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
 }
 
 
