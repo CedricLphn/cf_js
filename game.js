@@ -88,13 +88,13 @@ function generateMonster() {
 
     return name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
 }
-buttonreset.addEventListener('click',Reset,false);
+//buttonreset.addEventListener('click',Reset,false);
 function attack(player, target) {
     firstAttack(player);
     if(firstAttack(player) == true)
     {
 
-        text = "<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats '
+        text = "<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats ";
 
     }
     if(player.agility / 100 < Math.random().Tofixed(2)) {
@@ -125,7 +125,7 @@ function delaychatbox(text) {
     }
     timer = setInterval(function() {
         message(text);
-    }, 3000};
+    }, 3000);
 }
 
 function start () {
