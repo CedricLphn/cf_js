@@ -56,6 +56,9 @@ var monster = {
     hp: 7
 }
 
+function generateMonster() {
+    let name = ["Rat", "Loup", "Tauren", "Aigle", "Ananas"];
+    let suffix = ["de la nuit", "mutant", "sauvage", "assassin"];
 var boutique = {
     strengthPotion: {
         prix: 2,
@@ -75,6 +78,8 @@ var boutique = {
     }
 };
 
+    return Math.random * (0- name.length) + name.length + " " + Math.random * (0- suffix.length) + suffix.length;
+}
 
 
 /*************************
