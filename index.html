@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="game">
+
+    </div>
+<script>
+    var night = false;
+    var timer;
+
+    if(timer){
+        clearInterval(timer);
+    }
+
+    timer = setInterval(function(){
+        if(night == true) {
+            night =  false;
+        }else {
+            night = true;
+        }
+        console.log(night);
+
+    }, 2000)
+
+</script>
+</body>
+</html>
