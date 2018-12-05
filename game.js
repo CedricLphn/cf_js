@@ -101,6 +101,11 @@ function attack(player, target) {
 
     }
 }
+// buttonreset.addEventListener('click',Reset,false);
+// function attack(player, target) {
+//     if()
+//     document.getElementById('box').innerHTML = "<p>" + player + " attaque " + target + " et lui inflige " + player.strength + " points de dégats '
+// }
 
 function firstAttack(player) {
     var resultPlayer = player.agility / 100;
@@ -144,16 +149,38 @@ function start () {
     }
 }
 
-function use(potion){
-    if(player[inventory][potion] >= 0) {
-        if(potion == "strengthPotion") {
-            player.strength++;
-        }else if(potion[])
+function useItem(potion){
+    if(potion == undefined) {
+        return false;
+    }
+    if(potion == "strengthPotion" && player.inventory.strengthPotion > 0) {
+        player.strength++;
+        player.inventory.strengthPotion = player.inventory.strengthPotion - 1;
+        message("<p>Ta force a été augmenté de 1</p><p>Tu as dorénavant " + player.strength +" de force</p>");
+    }else if(potion == "agilityPotion" && player.inventory.agilityPotion > 0) {
+        player.agility++;
+        player.inventory.agilityPotion = player.inventory.agilityPotion - 1;
+        message("<p>Ton agilité a été augmenté de 1</p><p>Tu as dorénavant " + player.agility +" d'agilité</p>");
+    }else if(potion == "staminaPotion" && player.inventory.staminaPotion > 0) {
+        player.stamina++;
+        player.inventory.staminaPotion = player.inventory.staminaPotion - 1;
+        message("<p>Ton endurance a été augmenté de 1</p><p>Tu as dorénavant " + player.stamina +" d'endurance</p>");
+    }else if(potion == "hpPotion" && player.inventory.hpPotion > 0) {
+        if(player.hp + 20 > player.stamina) {
+            player.hp = player.stamina;
+        }else {
+            player.hp += 20;
+        }
+        player.inventory.hpPotion = player.inventory.hpPotion - 1 ;
+        message("<p>Ta santé a été augmenté de 20 points</p><p>Tu as dorénavant " + player.hp +" point(s) de santé</p>");
+    }else {
+        message("<p>Tu n'as pas assez de " + potion + "</p>");
     }
 }
 
 function message(text) {
     document.getElementById('box').innerHTML = text;
+    console.log(text);
 }
 
 /*************************
