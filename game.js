@@ -105,6 +105,17 @@ function start () {
     }
 }
 
+function use(potion){
+    if(player[inventory][potion] >= 0) {
+        if(potion == "strengthPotion") {
+            player.strength++;
+        }else if(potion[])
+    }
+}
+
+function message(text) {
+    document.getElementById('box').innerHTML = text;
+}
 
 /*************************
  *                       *
