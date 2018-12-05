@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 //     ______          ___                ______           __
 //   / ________  ____/ (_____  ____ _   / ________ ______/ /_____  _______  __
 //  / /   / __ \/ __  / / __ \/ __ `/  / /_  / __ `/ ___/ __/ __ \/ ___/ / / /
@@ -31,17 +30,25 @@ timer = setInterval(function(){
 
 
 var player = {
-        name: null,
-        strength: 10,
-        agility: 10,
-        stamina: 100,
-        hp: 100,
-        po: 0,
-        inventory: {
-                strengthPotion: 0,
-                agilityPotion: 0,
-                staminaPotion: 0,
-                hpPotion: 0
-        }
-    };
+    name: null,
+    strength: 10,
+    agility: 10,
+    stamina: 100,
+    hp: 100,
+    po: 0,
+    inventory: {
+        strengthPotion: 0,
+        agilityPotion: 0,
+        staminaPotion: 0,
+        hpPotion: 0
+    }
+};
+
+var monster = {
+    name: null,
+    strenght: 5,
+    stamina: 7,
+    hp: 7
+}
+
 
