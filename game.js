@@ -28,6 +28,11 @@ timer = setInterval(function(){
 
 }, 2000);
 
+/*************************
+ *                       *
+ *  Création des objets  *
+ *                       *
+ *************************/
 
 var player = {
     name: null,
@@ -51,4 +56,10 @@ var monster = {
     hp: 7
 }
 
+/*************************
+ *                       *
+ * Création des tableaux *
+ *                       *
+ *************************/
 
+var boutique = []
