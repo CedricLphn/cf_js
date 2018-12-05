@@ -130,11 +130,12 @@ function delaychatbox(text) {
 
 function start () {
     let insert = prompt("Entrez votre nom pour debuter la partie .");
-    if(insert == null){
-        return(insert);
+    if(insert == null || insert == ''){
+        start();
     }
     else {
-        player.name = insert
+        player.name = insert;
+        console.log(player.name);
         //on lancera la grosse fonction aventure
     }
 }
