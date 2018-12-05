@@ -56,7 +56,7 @@ var monster = {
     hp: 7
 }
 
-var boutique = {
+var shop = {
     strengthPotion: {
         prix: 2,
         strength: 1
@@ -87,8 +87,11 @@ function generateMonster() {
 
     return name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
 }
-
-
+buttonreset.addEventListener('click',Reset,false);
+function attack(player, target) {
+    if()
+    document.getElementById('box').innerHTML = "<p>" + player + " attaque " + target + " et lui inflige " + player.strength + " points de dégats '
+}
 /*************************
  *                       *
  * Création des tableaux *
