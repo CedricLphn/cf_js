@@ -84,6 +84,16 @@ function generateMonster() {
 
     return Math.random * (0- name.length) + name.length + " " + Math.random * (0- suffix.length) + suffix.length;
 }
+function start () {
+	let insert = prompt("Entrez votre nom pour debuter la partie .");
+	if(insert == null){
+		return(insert);
+	}
+	else {
+		//player.name = insert
+		//on lancera la grosse fonction aventure
+	}
+}
 
 
 /*************************
