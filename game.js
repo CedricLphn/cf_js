@@ -13,20 +13,21 @@
 
 var night = false;
 var timer;
+var highscore = 0;
 
 if(timer){
     clearInterval(timer);
 }
 
-timer = setInterval(function(){
-    if(night == true) {
-        night =  false;
-    }else {
-        night = true;
-    }
-    console.log(night);
+// timer = setInterval(function(){
+//     if(night == true) {
+//         night =  false;
+//     }else {
+//         night = true;
+//     }
+//     console.log(night);
 
-}, 2000);
+// }, 2000);
 
 /*************************
  *                       *
@@ -56,7 +57,7 @@ var monster = {
     hp: 7
 }
 
-var boutique = {
+var shop = {
     strengthPotion: {
         prix: 2,
         strength: 1
@@ -78,11 +79,19 @@ var boutique = {
 
 
 function generateMonster() {
-    let name = ["Rat", "Loup", "Tauren", "Aigle", "Ananas"];
-    let suffix = ["de la nuit", "mutant", "sauvage", "assassin"];
+    let name = ["Rat", "Loup", "Tauren", "Aigle", "Ananas", "Cactus"];
+    let suffix = ["de la nuit", "mutant", "affamé", "assassin"];
+
+    console.log(Math.floor(Math.random() * (name.length) + 1));
+    console.log(Math.floor(Math.random() * (suffix.length)) + 1);
 
 
-    return Math.random * (0- name.length) + name.length + " " + Math.random * (0- suffix.length) + suffix.length;
+    return name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
+}
+buttonreset.addEventListener('click',Reset,false);
+function attack(player, target) {
+    if()
+    document.getElementById('box').innerHTML = "<p>" + player + " attaque " + target + " et lui inflige " + player.strength + " points de dégats '
 }
 function start () {
 	let insert = prompt("Entrez votre nom pour debuter la partie .");
@@ -95,6 +104,28 @@ function start () {
 	}
 }
 
+function start () {
+    let insert = prompt("Entrez votre nom pour debuter la partie .");
+    if(insert == null){
+        return(insert);
+    }
+    else {
+        player.name = insert
+        //on lancera la grosse fonction aventure
+    }
+}
+
+function use(potion){
+    if(player[inventory][potion] >= 0) {
+        if(potion == "strengthPotion") {
+            player.strength++;
+        }else if(potion[])
+    }
+}
+
+function message(text) {
+    document.getElementById('box').innerHTML = text;
+}
 
 /*************************
  *                       *
