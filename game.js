@@ -13,6 +13,7 @@
 
 var night = false;
 var timer;
+var highscore = 0;
 
 if(timer){
     clearInterval(timer);
@@ -92,6 +93,19 @@ function attack(player, target) {
     if()
     document.getElementById('box').innerHTML = "<p>" + player + " attaque " + target + " et lui inflige " + player.strength + " points de dégats '
 }
+
+function start () {
+    let insert = prompt("Entrez votre nom pour debuter la partie .");
+    if(insert == null){
+        return(insert);
+    }
+    else {
+        player.name = insert
+        //on lancera la grosse fonction aventure
+    }
+}
+
+
 /*************************
  *                       *
  * Création des tableaux *
