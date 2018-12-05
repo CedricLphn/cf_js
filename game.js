@@ -56,10 +56,30 @@ var monster = {
     hp: 7
 }
 
+var boutique = {
+    strengthPotion: {
+        prix: 2,
+        strength: 1
+    }
+    agilityPotion: {
+        prix: 2,
+        agility: 1
+}
+    staminaPotion: {
+        prix: 2,
+        stamina: 1
+    }
+    hpPotion: {
+        prix: 5,
+        hp: 20
+    }
+};
+
+
+
 /*************************
  *                       *
  * Création des tableaux *
  *                       *
  *************************/
 
-var boutique = []
