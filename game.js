@@ -59,19 +59,19 @@ var monster = {
 
 var shop = {
     strengthPotion: {
-        prix: 2,
+        price: 2,
         strength: 1
     },
     agilityPotion: {
-        prix: 2,
+        price: 2,
         agility: 1
 },
     staminaPotion: {
-        prix: 2,
+        price: 2,
         stamina: 1
     },
     hpPotion: {
-        prix: 5,
+        price: 5,
         hp: 20
     }
 };
@@ -90,8 +90,37 @@ function generateMonster() {
 }
 buttonreset.addEventListener('click',Reset,false);
 function attack(player, target) {
-    if()
-    document.getElementById('box').innerHTML = "<p>" + player + " attaque " + target + " et lui inflige " + player.strength + " points de dégats '
+    firstAttack(player);
+    if(firstAttack(player) == true)
+    {
+
+        text = "<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats '
+
+    }
+    if(player.agility / 100 < Math.random().Tofixed(2)) {
+
+    }
+}
+
+function firstAttack(player) {
+    var resultPlayer = player.agility / 100;
+    var resultIA = Math.random().Tofixed(2);
+    if(player.agility / 100 < Math.random().Tofixed(2)) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function delaychatbox(text) {
+    var timer;
+    if(timer) {
+        clearInterval(timer);
+    }
+    timer = setInterval(function() {
+        message(text);
+    }, 3000};
 }
 
 function start () {
