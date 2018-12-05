@@ -31,17 +31,17 @@ timer = setInterval(function(){
 
 
 var player = {
-        name: '',
+        name: null,
         strength: 10,
         agility: 10,
         stamina: 100,
         hp: 100,
-        po: '',
+        po: 0,
         inventory: {
-                strengthPotion: '',
-                agilityPotion: '',
-                staminaPotion: '',
-                hpPotion: ''
+                strengthPotion: 0,
+                agilityPotion: 0,
+                staminaPotion: 0,
+                hpPotion: 0
         }
     };
 
