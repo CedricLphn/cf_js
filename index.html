@@ -11,16 +11,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="game.css" />
 
 </head>
 <body>
-<div class="begin" >
+<div class="begin" id="startPage">
+        <audio autoplay class="display">
+                <source src="sounds/start.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio> 
     <img class="background" src="./assets/intro.jpg" alt="Image de fond" />
-    <img class="firstTitle" src="./assets/logo.png" alt="Titre principal" />
+    <div class="firstTitle" id="startText"><p>Riyad Achour</p>
+    <p>Micael Dos Santos</p>
+    <p>Cédric Leprohon</p>
+    <p>Florian Gustin (display:none)</p>
+    <p>AS</p>
+    <p>CODING ENIX STUDIO</p>
+    <p>- Presents -</p></div>
+    <div class="firstTitle display" id="startlogo">
+        <img id="" class="" src="./assets/logo.png" alt="Titre principal" />
+        <p>Press key to start</p>
+    </div>
 </div>
 
-    <div id="start" class="container-fluid" hidden>
+    <div id="start" class="container-fluid display">
 
         <!-- cacher la classe background après l'intro -->
         

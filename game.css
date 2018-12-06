@@ -26,6 +26,7 @@ h1{
     position: absolute; 
     top: 0; 
     left: 0; 
+
       
     /* Preserve aspet ratio */
     min-width: 100%;
@@ -33,10 +34,17 @@ h1{
 }
 .firstTitle
 {
-    position: fle;
-    
+    position: relative;
+    margin-top: 300px;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
     
 }
+
+.display {
+    display: none;
+}
+
 .logo{
     width: 100px;
     height: 100px;

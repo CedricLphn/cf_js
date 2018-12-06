@@ -5,33 +5,6 @@
 // \____/\____/\__,_/_/_/ /_/\__, /  /_/    \__,_/\___/\__/\____/_/   \__, /
 //                          /____/                                   /____/
 
-/***********************
-*                      *
-*  Gestion de la nuit  *
-*                      *
-***********************/
-
-var night = false;
-var timer;
-var highscore = 0;
-
-var scoring = [];
-
-
-if(timer){
-    clearInterval(timer);
-}
-
-
-
-function updateBackground(variable) {
-    if(variable) {
-        message("Il fait nuit");
-    }else {
-        message("Il fait jour");
-    }
-}
-
 /*************************
  *                       *
  *  Création des objets  *
@@ -79,6 +52,57 @@ var shop = {
         hp: 20
     }
 };
+
+var switch_page;
+
+if(switch_page){
+    clearTimeout(switch_page);
+}
+switch_page = setTimeout(function(){
+    document.getElementById("startlogo").classList.remove("display");
+    document.getElementById("startText").classList.add("display");
+
+},16500);
+
+document.addEventListener("keypress", function() {
+    if(player.name == null) {
+        start();
+        document.getElementById("startPage").remove();
+        document.getElementById("start").classList.remove("display");
+    } 
+
+})
+document.removeEventListener("keypress", function(){ return; });
+
+
+/***********************
+*                      *
+*  Gestion de la nuit  *
+*                      *
+***********************/
+
+var night = false;
+var timer;
+var highscore = 0;
+
+var scoring = [];
+
+
+if(timer){
+    clearInterval(timer);
+}
+
+
+
+function updateBackground(variable) {
+    if(variable) {
+        message("Il fait nuit");
+    }else {
+        message("Il fait jour");
+    }
+}
+
+
 
 
 
