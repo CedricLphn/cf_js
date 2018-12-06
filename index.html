@@ -51,16 +51,31 @@
         <div class="row">
                 <div id="game" class="col-md-10 offset-md-1">
                     <div class="container-fluid">
-                        <div class="row">
+                        <div id="hpAndShop" class="row">
                             <div id="hpbar" class="col-md-4">
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%"></div>
                                     </div>
                             </div>
                             <div id="shop" class="col-md-4">
                                 <!-- BOUTIQUE -->
+                            </div> 
+                        </div>
+                        <div id="fight" class="row">
+                            <div id="fightPlayer" class="col-md-4">
+                                <!-- PLACEMENT PLAYER -->
                             </div>
-                                
+                            <div id="fightArea" class="col-md-4">
+                                <!-- ZONE DE COMBAT -->
+                            </div>
+                            <div id="fightMonster" class="col-md-4">
+                                <!-- PLACEMENT MONSTER -->
+                            </div>
+                        </div>
+                        <div id="chatAndInventory"class="row">
+                            <div id="box" class="col-md-6">
+                                <!-- PLACEMENT CHATBOX -->
+                            </div>
                         </div>
                     </div>
                 </div>  
@@ -70,9 +85,7 @@
 
         <div id="characters" class="characters"></div>
         <div id="aventure" class="aventure"></div>
-        <div id="shop" class="shop"></div>
         <div id="inventory" class="inventory"></div>
-        <div id="box" class="box"></div>
         <button type="button" id ="goshop" value ="Aller à la boutique"></button type="button">
         <button type="button" id ="leaveshop" value ="Quitter la boutique"></button type="button">
         <button type="button" id ="start" value ="Partir à l'aventure"></button type="button">

@@ -59,6 +59,15 @@ h1{
     background-color: black;
 }
 
-#shop{
+#shop, #fight, #box{
     border: 1px solid red;
+    height: 300px;
+}
+#hpAndShop{
+    border: 1px solid red;
+
+}
+#shop{
+    position: absolute;
+    left: 350px;
 }
