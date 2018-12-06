@@ -1,0 +1,122 @@
+#game{
+    height: 600px;
+    
+    border: 8px inset #076da4;
+    border-radius: 5px;
+    background: url(assets/day_battle.png);
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.begin {
+    margin : 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.background
+{
+    width: 100%;
+    height: auto;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+
+      
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+}
+.firstTitle
+{
+    position: relative;
+    margin-top: 300px;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    
+}
+
+.display {
+    display: none;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+}
+.logoCenter {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#start {
+    background-color: black;
+    padding-bottom: 100px;
+}
+
+#shop, #fight{
+    border: 1px solid red;
+    height: 300px;
+}
+#hpAndShop{
+    border: 1px solid red;
+    margin-top: 15px;
+
+}
+#fight{
+    height: 330px;
+}
+#shop{
+    position: absolute;
+    left: 350px;
+}
+#hpBar{
+    padding-left: 0px;
+    padding-right: 50px;
+    height: 42px;
+}
+.progress{
+    height: 20px;
+}
+
+.bgGrey{
+    background-color: #071852;
+    border: 1px solid #979398;
+    border-radius: 5px;
+    height: 100%;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
+
+.itemBox {
+    text-align: center;
+    font-size: 50px;
+}
+
+.itemDesc {
+    font-size: 15px;
+
+}
+.monsterbar{
+    margin-left: 50px;
+    margin-top: 2px;
+}
+#box{
+    border: 1px solid red;
+    height: 150px;
+}
+#buttons{
+    border: 1px solid red;
+}
+#fightArea, #fightMonster, #fightPlayer{
+    border: 1px solid blue;
+}
+#inventory{
+    border: 1px solid red;
+}
