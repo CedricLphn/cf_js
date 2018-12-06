@@ -11,8 +11,9 @@
  *                       *
  *************************/
 
-var player = {
-    name: null,
+
+const params = {
+    name : null,
     strength: 10,
     agility: 10,
     stamina: 100,
@@ -27,12 +28,17 @@ var player = {
     }
 };
 
-var monster = {
+var player = params;
+
+const paramsMonster = {
     name: null,
     strenght: 5,
     stamina: 7,
     hp: 7
 }
+
+var monster = paramsMonster;
+
 
 var shop = {
     strengthPotion: {
@@ -361,6 +367,12 @@ function endGame() {
 
     message("<p>Tu as perdu brave héro</p><p>Tu as " + highscore + " de points de score.<p>Ta mémoire sera gravé dans le Panthéon</p>")
 }
+
+document.getElementById("restart").addEventListener('click', function(){
+    player = params;
+    monster = paramsMonster;
+    start();
+});
 
 /*************************
  *                       *
