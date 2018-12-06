@@ -52,8 +52,11 @@
                     <div class="container-fluid">
                         <div id="hpAndShop" class="row">
                             <div id="hpBar" class="col-md-4">
-                                    <div class="progress">
+                                    <div class="playerbar progress">
                                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%"></div>
+                                    </div>
+                                    <div class="monsterbar progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 100%"></div>
                                     </div>
                             </div>
                             <div id="shop" class="col-md-4">
@@ -97,20 +100,21 @@
                             <div id="box" class="col-md-6">
                                 <!-- PLACEMENT CHATBOX -->
                             </div>
+                            <div id="inventory" class="col-md-5 offset-md-1">
+                                <!-- PLACEMENT INVENTAIRE -->
+                            </div>
+                        </div>
+                        <div id="buttons" class="row">
+                            <div class="col-md-12">
+                                <button id ="goshop">Aller à la boutique</button>
+                                <button id ="leaveshop">Quitter la boutique</button>
+                                <button id ="goaventure">Partir à l'aventure</button>
+                                <button id ="restart">Recommencer la partie</button>
+                            </div>
                         </div>
                     </div>
                 </div>  
         </div>
-
-        
-
-        <div id="characters" class="characters"></div>
-        <div id="aventure" class="aventure"></div>
-        <div id="inventory" class="inventory"></div>
-        <button id ="goshop">Aller à la boutique</button>
-        <button id ="leaveshop">Quitter la boutique</button>
-        <button id ="goaventure">Partir à l'aventure</button>
-        <button id ="restart">Recommencer la partie</button>    
     </div>
 </div>
 <script src="game.js"></script>

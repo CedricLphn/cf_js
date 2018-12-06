@@ -57,9 +57,10 @@ h1{
 }
 #start {
     background-color: black;
+    padding-bottom: 100px;
 }
 
-#shop, #fight, #box{
+#shop, #fight{
     border: 1px solid red;
     height: 300px;
 }
@@ -69,7 +70,7 @@ h1{
 
 }
 #fight{
-    height: 350px;
+    height: 330px;
 }
 #shop{
     position: absolute;
@@ -78,6 +79,7 @@ h1{
 #hpBar{
     padding-left: 0px;
     padding-right: 50px;
+    height: 42px;
 }
 .progress{
     height: 20px;
@@ -100,4 +102,21 @@ h1{
 .itemDesc {
     font-size: 15px;
 
+}
+.monsterbar{
+    margin-left: 50px;
+    margin-top: 2px;
+}
+#box{
+    border: 1px solid red;
+    height: 150px;
+}
+#buttons{
+    border: 1px solid red;
+}
+#fightArea, #fightMonster, #fightPlayer{
+    border: 1px solid blue;
+}
+#inventory{
+    border: 1px solid red;
 }
