@@ -93,19 +93,75 @@ function attack(player, target) {
     firstAttack(player);
     if(firstAttack(player) == true)
     {
+        if(player.hp > 0) {
+            while(player.hp > 0)
+            {
+                var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats " + "</p>"';
+                showMessageLog(attackPlayerVsTarget);
 
-        text = "<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats ";
+                var target.hp = target.hp - player.strength;
 
+                var textTargetVsPlayer = '"<p>" + target.name + " perds " + player.strength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
+                showMessageLog(textTargetVsPlayer);
+
+                if(target.hp > 0) {
+                    var attackTargetVsPlayer = '"<p>" + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats " + "</p>"';
+                    showMessageLog(attackTargetVsPlayer);
+
+                    var player.hp = player.hp - target.strength;
+
+                    var textPlayerVsTarget = '"<p>" + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants " + "</p>"';
+                    showMessageLog(textPlayerVsTarget);
+                }
+                else if(target.hp <= 0) {
+                    var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
+                    showMessageLog(victory);
+                }       // insérer la fonction loot
+                else if(player.hp <= 0) {
+                    var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
+                    showMessageLog(gameover);
+                    // insérer fonction fin de partie
+                }
+            }
+        }
     }
-    if(player.agility / 100 < Math.random().Tofixed(2)) {
+    else if(firstAttack(player) == false)
+    {
+        if(player.hp > 0) {
+            while(player.hp > 0)
+            {
+                var attackTargetVsPlayer = '"<p>" + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats " + "</p>"';
+                showMessageLog(attackTargetVsPlayer);
 
+                var player.hp = player.hp - target.strength;
+
+                var textPlayerVsTarget = '"<p>" + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants " + "</p>"';
+                showMessageLog(textPlayerVsTarget);
+
+                if(target.hp > 0) {
+                    var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats " + "</p>"';
+                    showMessageLog(attackPlayerVsTarget);
+
+                    var target.hp = target.hp - player.strength;
+
+                    var textTargetVsPlayer = '"<p>" + target.name + " perds " + player.strength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
+                    showMessageLog(textTargetVsPlayer);
+                }
+                else if(target.hp <= 0) {
+                    var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
+                    showMessageLog(victory);
+                }       // insérer la fonction loot
+                else {
+                    var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
+                    showMessageLog(gameover);
+                    // insérer la fonction fin de partie
+                }
+            }
+        }
     }
 }
 // buttonreset.addEventListener('click',Reset,false);
-// function attack(player, target) {
-//     if()
-//     document.getElementById('box').innerHTML = "<p>" + player + " attaque " + target + " et lui inflige " + player.strength + " points de dégats '
-// }
+
 
 function firstAttack(player) {
     var resultPlayer = player.agility / 100;
@@ -118,14 +174,14 @@ function firstAttack(player) {
     }
 }
 
-function delaychatbox(text) {
+function showMessageLog(text) {
     var timer;
     if(timer) {
-        clearInterval(timer);
+        clearTimeout(timer);
     }
-    timer = setInterval(function() {
+    timer = setTimeout(function() {
         message(text);
-    }, 3000);
+    }, 3000}; // 3s de délai
 }
 
 function start () {
