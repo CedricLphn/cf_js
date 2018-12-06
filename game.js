@@ -94,7 +94,6 @@ function generateMonster() {
 //buttonreset.addEventListener('click',Reset,false);
 function attack(player, target) {
     firstAttack(player);
-
     if(night == true) {
         var monsterStrength = target.strength + 1; 
     }else {
@@ -126,6 +125,7 @@ function attack(player, target) {
                 else if(target.hp <= 0) {
                     var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
                     showMessageLog(victory);
+                    highscore++;
                     // insérer la fonction loot
                     loot();
                 }       
@@ -162,6 +162,7 @@ function attack(player, target) {
                 else if(target.hp <= 0) {
                     var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
                     showMessageLog(victory);
+                    highscore++;
                     // insérer la fonction loot
                     loot();
                 }       
@@ -174,6 +175,8 @@ function attack(player, target) {
             }
         }
     }
+    target.hp = target.stamina;
+    monsterStrength+1;
 }
 // buttonreset.addEventListener('click',Reset,false);
 
