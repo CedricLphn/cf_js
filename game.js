@@ -66,8 +66,11 @@ if(switch_page){
     clearTimeout(switch_page);
 }
 switch_page = setTimeout(function(){
-    document.getElementById("startlogo").classList.remove("display");
-    document.getElementById("startText").classList.add("display");
+    if(player.name == null)
+    {
+        document.getElementById("startlogo").classList.remove("display");
+        document.getElementById("startText").classList.add("display");
+    }
 
 },16500);
 
@@ -303,7 +306,7 @@ function message(text) {
 }
 
 function loot(){  
-   player.po + 3;
+   player.po += 3;
    dropPourcentage();
    if(dropPourcentage() == true){
     player.inventory.monsterHpPotion + 1;
@@ -313,8 +316,8 @@ function loot(){
  
 
 function dropPourcentage() {
-    var resultPlayer = 10 / 100;
-    var resultIA = Math.random().Tofixed(1);
+    var resultPlayer = 0.1;
+    var resultIA = Math.random();
     if(resultPlayer < resultIA ) {
         return true;
     }
