@@ -58,3 +58,7 @@ h1{
 #start {
     background-color: black;
 }
+
+#shop{
+    border: 1px solid red;
+}

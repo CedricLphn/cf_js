@@ -157,6 +157,7 @@ function attack(player, target) {
                 else if(player.hp <= 0) {
                     var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
                     showMessageLog(gameover);
+                    endGame();
                     // insérer fonction fin de partie
                 }
             }
@@ -291,13 +292,14 @@ function message(text) {
 }
 
 function loot(){  
- 
    player.po + 3;
    dropPourcentage();
    if(dropPourcentage() == true){
     player.inventory.monsterHpPotion + 1;
      }
-}     
+}
+
+ 
 
 function dropPourcentage() {
     var resultPlayer = 10 / 100;
