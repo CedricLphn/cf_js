@@ -99,7 +99,7 @@ function attack(player, target) {
                 var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats " + "</p>"';
                 showMessageLog(attackPlayerVsTarget);
 
-                var target.hp = target.hp - player.strength;
+                target.hp = target.hp - player.strength;
 
                 var textTargetVsPlayer = '"<p>" + target.name + " perds " + player.strength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
                 showMessageLog(textTargetVsPlayer);
@@ -108,7 +108,7 @@ function attack(player, target) {
                     var attackTargetVsPlayer = '"<p>" + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats " + "</p>"';
                     showMessageLog(attackTargetVsPlayer);
 
-                    var player.hp = player.hp - target.strength;
+                    player.hp = player.hp - target.strength;
 
                     var textPlayerVsTarget = '"<p>" + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants " + "</p>"';
                     showMessageLog(textPlayerVsTarget);
@@ -133,7 +133,7 @@ function attack(player, target) {
                 var attackTargetVsPlayer = '"<p>" + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats " + "</p>"';
                 showMessageLog(attackTargetVsPlayer);
 
-                var player.hp = player.hp - target.strength;
+                player.hp = player.hp - target.strength;
 
                 var textPlayerVsTarget = '"<p>" + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants " + "</p>"';
                 showMessageLog(textPlayerVsTarget);
@@ -142,7 +142,7 @@ function attack(player, target) {
                     var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats " + "</p>"';
                     showMessageLog(attackPlayerVsTarget);
 
-                    var target.hp = target.hp - player.strength;
+                    target.hp = target.hp - player.strength;
 
                     var textTargetVsPlayer = '"<p>" + target.name + " perds " + player.strength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
                     showMessageLog(textTargetVsPlayer);
@@ -182,7 +182,7 @@ function showMessageLog(text) {
     timer = setTimeout(function() {
         message(text);
     }, 3000}; // 3s de délai
-}
+};
 
 function start () {
     let insert = prompt("Entrez votre nom pour debuter la partie .");
