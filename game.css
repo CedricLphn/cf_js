@@ -1,8 +1,9 @@
 #game{
     height: 600px;
-    background-color: white;
+    
     border: 8px inset #076da4;
     border-radius: 5px;
+    background: url(assets/day_battle.png);
 }
 
 h1{
@@ -11,25 +12,30 @@ h1{
 }
 
 .begin {
-    height: 100%;
-    width: 100%;
     margin : 0;
     padding: 0;
-    /* background-image: url('./assets/intro.jpg');
-    background-repeat: no-repeat; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .background
 {
     width: 100%;
     height: auto;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+      
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
 }
 .firstTitle
 {
-    width: 400px;
-    /* position: relative;
-    top: -500px;
-    left: 450px; */
+    position: fle;
+    
+    
 }
 .logo{
     width: 100px;

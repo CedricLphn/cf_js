@@ -17,19 +17,20 @@ var highscore = 0;
 
 var scoring = [];
 
+
 if(timer){
     clearInterval(timer);
 }
 
-// timer = setInterval(function(){
-//     if(night == true) {
-//         night =  false;
-//     }else {
-//         night = true;
-//     }
-//     console.log(night);
 
-// }, 45000);
+
+function updateBackground(variable) {
+    if(variable) {
+        message("Il fait nuit");
+    }else {
+        message("Il fait jour");
+    }
+}
 
 /*************************
  *                       *
@@ -210,6 +211,17 @@ function start () {
     else {
         player.name = insert;
         console.log(player.name);
+        timer = setInterval(function(){
+            if(night == true) {
+                night = false;
+            }else {
+                night = true;
+            }
+        
+            updateBackground(night);
+            console.log(night);
+        
+        }, 3000);
         //on lancera la grosse fonction aventure
     }
 }
@@ -230,11 +242,17 @@ function useItem(potion){
         player.stamina++;
         player.inventory.staminaPotion = player.inventory.staminaPotion - 1;
         message("<p>Ton endurance a été augmenté de 1</p><p>Tu as dorénavant " + player.stamina +" d'endurance</p>");
-    }else if(potion == "hpPotion" && player.inventory.hpPotion > 0) {
-        if(player.hp + 20 > player.stamina) {
+    }else if(potion == "hpPotion" && player.inventory.hpPotion > 0 || 
+     potion ==  "monsterHpPotion" && player.inventory.monsterHpPotion > 0) {
+        if(player.hp + 20 > player.stamina || player.hp + 10 > player.stamina) {
             player.hp = player.stamina;
         }else {
-            player.hp += 20;
+            if(potion == "hpPotion")
+            {
+                player.hp += 20;
+            }else {
+                player.hp += 10;
+            }
         }
         player.inventory.hpPotion = player.inventory.hpPotion - 1 ;
         message("<p>Ta santé a été augmenté de 20 points</p><p>Tu as dorénavant " + player.hp +" point(s) de santé</p>");
@@ -305,7 +323,7 @@ else {
     message("Vous n'avez pas assez de pièces d'or");
 }
 }
-get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
+//get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
  
 
 function endGame() {
