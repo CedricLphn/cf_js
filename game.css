@@ -82,3 +82,12 @@ h1{
 .progress{
     height: 20px;
 }
+
+.bgGrey{
+    background-color: #071852;
+    border: 1px solid #979398;
+    border-radius: 5px;
+    height: 100%;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
