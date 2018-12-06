@@ -35,7 +35,7 @@ const paramsMonster = {
     name: null,
     strength: 5,
     stamina: 7,
-    hp: 50
+    hp: 7
 }
 
 var monster = paramsMonster;
@@ -139,6 +139,26 @@ function attack(player, target) {
     }else {
         monsterStrength = target.strength;
     }
+
+    var transition;
+    if(transition){
+        clearInterval(transition);
+    }
+
+    let _transition = "player";
+
+    transition = setInterval(function() {
+        if(_transition == "player"){
+            _transition = "monster";
+            document.getElementById("centerPlayer").classList.remove("display");
+            document.getElementById("fightPlayer").classList.add("display");
+        }else {
+            _transition = "player";
+            document.getElementById("centerMonster").classList.remove("display");
+            document.getElementById("fightMonster").classList.add("display");
+
+        }
+    },1000);
 
     if(firstAttack(player) == true)
     {
@@ -323,9 +343,13 @@ function useItem(potion){
 function message(text) {
     let timer;
     if(timer){
-        
+        clearTimeout(timer);
     }
-    document.getElementById('box').innerHTML = text;
+    timer = setTimeout(function() {
+    document.getElementById('box').innerHTML = '';
+    }, 3000);
+
+    document.getElementById('box').innerHTML += text;
     console.log(text);
 }
 
