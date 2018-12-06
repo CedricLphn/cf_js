@@ -116,7 +116,9 @@ function attack(player, target) {
                 else if(target.hp <= 0) {
                     var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
                     showMessageLog(victory);
-                }       // insérer la fonction loot
+                    // insérer la fonction loot
+                    loot();
+                }       
                 else if(player.hp <= 0) {
                     var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
                     showMessageLog(gameover);
@@ -150,7 +152,10 @@ function attack(player, target) {
                 else if(target.hp <= 0) {
                     var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
                     showMessageLog(victory);
-                }       // insérer la fonction loot
+                    // insérer la fonction loot
+                    loot();
+                }       
+
                 else {
                     var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
                     showMessageLog(gameover);
@@ -182,7 +187,6 @@ function showMessageLog(text) {
     timer = setTimeout(function() {
         message(text);
     }, 3000}; // 3s de délai
-};
 
 function start () {
     let insert = prompt("Entrez votre nom pour debuter la partie .");
@@ -229,6 +233,28 @@ function message(text) {
     document.getElementById('box').innerHTML = text;
     console.log(text);
 }
+
+function loot(){  
+ 
+   player.po + 3;
+   dropPourcentage();
+   if(dropPourcentage() == true){
+    player.inventory.hpPotion + 1;
+     }
+}     
+
+function dropPourcentage() {
+    var resultPlayer = 10 / 100;
+    var resultIA = Math.random().Tofixed(1);
+    if(resultPlayer < resultIA ) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+        
 
 /*************************
  *                       *
