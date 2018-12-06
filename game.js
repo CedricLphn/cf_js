@@ -256,6 +256,43 @@ function dropPourcentage() {
 
         
 
+function buy () {
+
+ if ( player.po >= shop.strenghtPotion.price){
+    message("Vous avez acheté une potion de force")
+    player.po = player.po - shop.strenghtPotion.price
+    player.inventory.strenghtPotion += 1 
+}
+else {
+    message("Vous n'avez pas assez de pièces d'or")
+}
+ if (player.po >= shop.agilityPotion.price){
+    message"Vous avez acheté une potion de force"
+    player.po = player.po - shop.agilityPotionp.price
+    player.inventory.agilityPotion += 1
+}
+else {
+    message(" Vous n'avez pas assez de pièces d'or")
+}
+if ( player.po >= shop.staminaPotion.price){
+    message(" Vous avez acheté une potion d'endurance")
+    player.po = player.po - shop.staminaPotion.price
+    player.inventory.staminaPotion += 1 
+}
+else {
+    message("Vous n'avez pas assez de pièces d'or")
+}
+if ( player.po >= shop.hpPotion.price){
+    message(" Vous avez acheté une potion de vie")
+    player.po = player.po - shop.hpPotion.price
+    player.inventory.hpPotion += 1 
+}
+else {
+    message("Vous n'avez pas assez de pièces d'or")
+}
+}
+get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
+ 
 /*************************
  *                       *
  * Création des tableaux *
