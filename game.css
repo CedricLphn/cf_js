@@ -75,6 +75,7 @@ h1{
 #shop{
     position: absolute;
     left: 350px;
+    z-index: 2;
 }
 #hpBar{
     padding-left: 0px;

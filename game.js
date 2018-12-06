@@ -328,42 +328,29 @@ function dropPourcentage() {
 
         
 
-function buy () {
+function buy (id) {
 
- if ( player.po >= shop.strenghtPotion.price){
+ if (id == 1 && player.po >= shop.strengthPotion.price){
     message("Vous avez acheté une potion de force");
     player.po = player.po - shop.strenghtPotion.price;
     player.inventory.strenghtPotion += 1;
-}
-else {
-    message("Vous n'avez pas assez de pièces d'or");
-}
- if (player.po >= shop.agilityPotion.price){
+}else if (id == 2 && player.po >= shop.agilityPotion.price){
     message("Vous avez acheté une potion de force");
     player.po = player.po - shop.agilityPotionp.price;
     player.inventory.agilityPotion += 1;
-}
-else {
-    message(" Vous n'avez pas assez de pièces d'or");
-}
-if ( player.po >= shop.staminaPotion.price){
+}else if (id == 3 && player.po >= shop.staminaPotion.price){
     message(" Vous avez acheté une potion d'endurance");
     player.po = player.po - shop.staminaPotion.price;
     player.inventory.staminaPotion += 1;
-}
-else {
-    message("Vous n'avez pas assez de pièces d'or");
-}
-if ( player.po >= shop.hpPotion.price){
+}else if (id == 4 && player.po >= shop.hpPotion.price){
     message(" Vous avez acheté une potion de vie");
     player.po = player.po - shop.hpPotion.price;
     player.inventory.hpPotion += 1; 
-}
-else {
+}else {
     message("Vous n'avez pas assez de pièces d'or");
 }
+
 }
-//get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
  
 
 function endGame() {
@@ -394,3 +381,17 @@ document.getElementById("goshop").addEventListener("click", function() {
  *                       *
  *************************/
 
+
+ /*************************
+ *                       *
+ * Fonction d'achat      *
+ *                       *
+ *************************/
+
+ // Boutique
+ for(let i = 1; i <= 4; i++){
+     console.log("ok");
+     document.getElementById("buy"+i).addEventListener("click", function(){
+        buy(i);
+     })
+ }
