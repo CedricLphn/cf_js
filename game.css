@@ -93,17 +93,30 @@ h1{
     color: white;
 }
 
+
 .itemBox {
     text-align: center;
     font-size: 50px;
     border: 1px solid #3E2723;
-
 }
 
 .itemDesc {
     font-size: 8px;
 
 }
+
+.inventorybox {
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #3E2723;
+
+}
+
+.inventoryDesc {
+    font-size: 10px;
+
+}
+
 .monsterbar{
     margin-left: 50px;
     margin-top: 2px;
