@@ -295,7 +295,7 @@ else {
     message("Vous n'avez pas assez de pièces d'or");
 }
 }
-get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
+//get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
  
 
 function endGame() {
