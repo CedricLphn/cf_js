@@ -48,7 +48,8 @@ var player = {
         strengthPotion: 0,
         agilityPotion: 0,
         staminaPotion: 0,
-        hpPotion: 0
+        hpPotion: 0,
+        monsterHpPotion: 0
     }
 };
 
@@ -93,6 +94,13 @@ function generateMonster() {
 //buttonreset.addEventListener('click',Reset,false);
 function attack(player, target) {
     firstAttack(player);
+
+    if(night == true) {
+        var monsterStrength = target.strength + 1; 
+    }else {
+        var monsterStrength = target.strength;
+    }
+
     if(firstAttack(player) == true)
     {
         if(player.hp > 0) {
@@ -101,9 +109,9 @@ function attack(player, target) {
                 var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats " + "</p>"';
                 showMessageLog(attackPlayerVsTarget);
 
-                target.hp = target.hp - player.strength;
+                target.hp = target.hp - monsterStrength;
 
-                var textTargetVsPlayer = '"<p>" + target.name + " perds " + player.strength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
+                var textTargetVsPlayer = '"<p>" + target.name + " perds " + monsterStrength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
                 showMessageLog(textTargetVsPlayer);
 
                 if(target.hp > 0) {
@@ -143,12 +151,12 @@ function attack(player, target) {
                 showMessageLog(textPlayerVsTarget);
 
                 if(target.hp > 0) {
-                    var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats " + "</p>"';
+                    var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + monsterStrength + " points de dégats " + "</p>"';
                     showMessageLog(attackPlayerVsTarget);
 
-                    target.hp = target.hp - player.strength;
+                    target.hp = target.hp - monsterStrength;
 
-                    var textTargetVsPlayer = '"<p>" + target.name + " perds " + player.strength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
+                    var textTargetVsPlayer = '"<p>" + target.name + " perds " + monsterStrength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
                     showMessageLog(textTargetVsPlayer);
                 }
                 else if(target.hp <= 0) {
@@ -157,7 +165,6 @@ function attack(player, target) {
                     // insérer la fonction loot
                     loot();
                 }       
-
                 else {
                     var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
                     showMessageLog(gameover);
@@ -209,7 +216,7 @@ function useItem(potion){
         return false;
     }
     if(potion == "strengthPotion" && player.inventory.strengthPotion > 0) {
-        player.strength++;
+        monsterStrength++;
         player.inventory.strengthPotion = player.inventory.strengthPotion - 1;
         message("<p>Ta force a été augmenté de 1</p><p>Tu as dorénavant " + player.strength +" de force</p>");
     }else if(potion == "agilityPotion" && player.inventory.agilityPotion > 0) {
@@ -243,7 +250,7 @@ function loot(){
    player.po + 3;
    dropPourcentage();
    if(dropPourcentage() == true){
-    player.inventory.hpPotion + 1;
+    player.inventory.monsterHpPotion + 1;
      }
 }     
 
@@ -271,7 +278,7 @@ else {
     message("Vous n'avez pas assez de pièces d'or");
 }
  if (player.po >= shop.agilityPotion.price){
-    message"Vous avez acheté une potion de force";
+    message("Vous avez acheté une potion de force");
     player.po = player.po - shop.agilityPotionp.price;
     player.inventory.agilityPotion += 1;
 }
@@ -295,7 +302,7 @@ else {
     message("Vous n'avez pas assez de pièces d'or");
 }
 }
-//get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
+get.elementById(/* l'id du bouton acheter */).addEventListener('click',buy)
  
 
 function endGame() {

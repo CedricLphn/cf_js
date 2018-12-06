@@ -3,20 +3,34 @@
     height: 600px;
 }
 
-.row {
-    display: none;
-
-}
 h1{
     text-align: center;
     margin-bottom: 20px;
 }
 
 .begin {
-    background-image: url("assets/intro.jpg");
     height: 100%;
     width: 100%;
     margin : 0;
     padding: 0;
+    /* background-image: url('./assets/intro.jpg');
+    background-repeat: no-repeat; */
 
+}
+.background
+{
+    width: 100%;
+    height: auto;
+}
+.firstTitle
+{
+    width: 400px;
+    /* position: relative;
+    top: -500px;
+    left: 450px; */
+}
+.logo{
+    width: 100px;
+    height: 100px;
+    text-align: center;
 }
