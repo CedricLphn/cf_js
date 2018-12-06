@@ -33,9 +33,9 @@ var player = params;
 
 const paramsMonster = {
     name: null,
-    strenght: 5,
+    strength: 5,
     stamina: 7,
-    hp: 7
+    hp: 50
 }
 
 var monster = paramsMonster;
@@ -126,51 +126,58 @@ function generateMonster() {
     console.log(Math.floor(Math.random() * (name.length) + 1));
     console.log(Math.floor(Math.random() * (suffix.length)) + 1);
 
-
+    monster.name =  name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
     return name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
 }
 //buttonreset.addEventListener('click',Reset,false);
 function attack(player, target) {
     firstAttack(player);
+    generateMonster();
+    var monsterStrength;
     if(night == true) {
-        var monsterStrength = target.strength + 1; 
+        monsterStrength = target.strength + 1; 
     }else {
-        var monsterStrength = target.strength;
+        monsterStrength = target.strength;
     }
 
     if(firstAttack(player) == true)
     {
+
         if(player.hp > 0) {
-            while(player.hp > 0)
+
+            if(target.hp > 0)
             {
-                var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats " + "</p>"';
-                showMessageLog(attackPlayerVsTarget);
+                var attackPlayerVsTarget = '<p>' + player.name + " attaque " + target.name + " et lui inflige " + player.strength + " points de dégats </p>";
+                message(attackPlayerVsTarget);
 
-                target.hp = target.hp - monsterStrength;
+                target.hp = target.hp - player.strength;
 
-                var textTargetVsPlayer = '"<p>" + target.name + " perds " + monsterStrength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
-                showMessageLog(textTargetVsPlayer);
-
+                var textTargetVsPlayer = '<p>' + target.name + " perds " + player.strength + " de points de vie, " + target.hp + " points de vie restants </p>";
+                message(textTargetVsPlayer);
+                
                 if(target.hp > 0) {
-                    var attackTargetVsPlayer = '"<p>" + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats " + "</p>"';
-                    showMessageLog(attackTargetVsPlayer);
+
+                    var attackTargetVsPlayer = '<p>' + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats </p>";
+                    message(attackTargetVsPlayer);
 
                     player.hp = player.hp - target.strength;
 
-                    var textPlayerVsTarget = '"<p>" + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants " + "</p>"';
-                    showMessageLog(textPlayerVsTarget);
+                    var textPlayerVsTarget = '<p>' + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants </p>";
+                    message(textPlayerVsTarget);
                 }
                 else if(target.hp <= 0) {
-                    var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
-                    showMessageLog(victory);
+                    var victory = '<p>Félicitations ! ' + player.name + " a remporté la victoire. Butin remporté : </p>";
+                    message(victory);
                     highscore++;
                     // insérer la fonction loot
                     loot();
+                    //break;
                 }       
                 else if(player.hp <= 0) {
-                    var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
-                    showMessageLog(gameover);
+                    var gameover = '<p>Défaite ! vous avez été vaincu par ' + target.name + "</p>";
+                    message(gameover);
                     endGame();
+                    //break;
                     // insérer fonction fin de partie
                 }
             }
@@ -179,36 +186,40 @@ function attack(player, target) {
     else if(firstAttack(player) == false)
     {
         if(player.hp > 0) {
-            while(player.hp > 0)
+            if(target.hp >= 0)
             {
-                var attackTargetVsPlayer = '"<p>" + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats " + "</p>"';
+                var attackTargetVsPlayer = '<p>' + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats</p>";
                 showMessageLog(attackTargetVsPlayer);
 
                 player.hp = player.hp - target.strength;
 
-                var textPlayerVsTarget = '"<p>" + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants " + "</p>"';
+                var textPlayerVsTarget = '<p>' + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants</p>";
                 showMessageLog(textPlayerVsTarget);
 
                 if(target.hp > 0) {
-                    var attackPlayerVsTarget = '"<p>" + player.name + " attaque " + target.name + " et lui inflige " + monsterStrength + " points de dégats " + "</p>"';
+                    var attackPlayerVsTarget = '<p>' + player.name + " attaque " + target.name + " et lui inflige " + monsterStrength + " points de dégats</p>";
                     showMessageLog(attackPlayerVsTarget);
 
                     target.hp = target.hp - monsterStrength;
 
-                    var textTargetVsPlayer = '"<p>" + target.name + " perds " + monsterStrength + " de points de vie, " + target.hp + " points de vie restants " + "</p>"';
+                    var textTargetVsPlayer = '<p>' + target.name + " perds " + monsterStrength + " de points de vie, " + target.hp + " points de vie restants</p>";
                     showMessageLog(textTargetVsPlayer);
+                    
                 }
                 else if(target.hp <= 0) {
-                    var victory = '"<p>" + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté : " + "</p>"';
+                    var victory = '<p>' + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté :</p>";
                     showMessageLog(victory);
                     highscore++;
                     // insérer la fonction loot
                     loot();
+                    //break;
+
                 }       
                 else {
-                    var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
+                    var gameover = '<p> + "Défaite ! vous avez été vaincu par ' + target.name + '</p>';
                     showMessageLog(gameover);
                     endGame();
+                    //break;
                     // insérer la fonction fin de partie
                 }
             }
@@ -221,9 +232,8 @@ function attack(player, target) {
 
 
 function firstAttack(player) {
-    var resultPlayer = player.agility / 100;
-    var resultIA = Math.random().Tofixed(2);
-    if(player.agility / 100 < Math.random().Tofixed(2)) {
+    let random = Math.random();
+    if(player.agility / 100 < random.toFixed(2)) {
         return true;
     }
     else{
@@ -238,7 +248,7 @@ function showMessageLog(text) {
     }
     timer = setTimeout(function() {
         message(text);
-    }, 3000); // 3s de délai
+    }, 0); // 3s de délai
 }
 function start () {
 	let insert = prompt("Entrez votre nom pour debuter la partie .");
@@ -311,6 +321,10 @@ function useItem(potion){
 }
 
 function message(text) {
+    let timer;
+    if(timer){
+        
+    }
     document.getElementById('box').innerHTML = text;
     console.log(text);
 }
@@ -328,7 +342,7 @@ function loot(){
 function dropPourcentage() {
     var resultPlayer = 0.1;
     var resultIA = Math.random();
-    if(resultPlayer < resultIA ) {
+    if(resultPlayer > resultIA ) {
         return true;
     }
     else{
@@ -342,8 +356,8 @@ function buy (id) {
 
  if (id == 1 && player.po >= shop.strengthPotion.price){
     message("Vous avez acheté une potion de force");
-    player.po = player.po - shop.strenghtPotion.price;
-    player.inventory.strenghtPotion += 1;
+    player.po = player.po - shop.strengthPotion.price;
+    player.inventory.strengthPotion += 1;
 }else if (id == 2 && player.po >= shop.agilityPotion.price){
     message("Vous avez acheté une potion de force");
     player.po = player.po - shop.agilityPotionp.price;
@@ -411,3 +425,7 @@ document.getElementById("goshop").addEventListener("click", function() {
         buy(i);
      })
  }
+
+ document.getElementById("fightMonster").addEventListener("click", function() {
+     attack(player, monster);
+ })
