@@ -11,6 +11,7 @@
  *                       *
  *************************/
 
+var isAttack = true;
 
 const params = {
     name : null,
@@ -99,12 +100,15 @@ if(timer){
 }
 
 
-
 function updateBackground(variable) {
-    if(variable) {
-        message("Il fait nuit");
+    if(isAttack == true){
+        if(variable) {
+            document.getElementById("game").style.background = "url(assets/night_battle.jpg)";
+        }else {
+            document.getElementById("game").style.background = "url(assets/day_battle.png)";
+        }
     }else {
-        message("Il fait jour");
+        document.getElementById("game").style.background = "url("+variable+")";
     }
 }
 
@@ -249,10 +253,11 @@ function start () {
                 night = true;
             }
         
-            updateBackground(night);
-            console.log(night);
+            if(isAttack == true) {
+                updateBackground(night);
+            }
         
-        }, 3000);
+        }, 45000);
         //on lancera la grosse fonction aventure
     }
 }
@@ -373,6 +378,12 @@ document.getElementById("restart").addEventListener('click', function(){
     monster = paramsMonster;
     start();
 });
+
+document.getElementById("goshop").addEventListener("click", function() {
+    isAttack = false;
+    updateBackground("assets/tavern.jpg");
+
+})
 
 /*************************
  *                       *
