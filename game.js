@@ -381,6 +381,8 @@ document.getElementById("restart").addEventListener('click', function(){
 
 document.getElementById("goshop").addEventListener("click", function() {
     isAttack = false;
+    document.getElementById("shop").classList.remove("display");
+    document.getElementById("goshop").disabled = true;
     updateBackground("assets/tavern.jpg");
 
 })
