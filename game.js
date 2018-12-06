@@ -15,6 +15,8 @@ var night = false;
 var timer;
 var highscore = 0;
 
+var scoring = [];
+
 if(timer){
     clearInterval(timer);
 }
@@ -27,7 +29,7 @@ if(timer){
 //     }
 //     console.log(night);
 
-// }, 2000);
+// }, 45000);
 
 /*************************
  *                       *
@@ -159,6 +161,7 @@ function attack(player, target) {
                 else {
                     var gameover = '"<p>" + "Défaite ! vous avez été vaincu par " + target.name + "</p>"';
                     showMessageLog(gameover);
+                    endGame();
                     // insérer la fonction fin de partie
                 }
             }
@@ -186,7 +189,8 @@ function showMessageLog(text) {
     }
     timer = setTimeout(function() {
         message(text);
-    }, 3000}; // 3s de délai
+    }, 3000); // 3s de délai
+}
 
 function start () {
     let insert = prompt("Entrez votre nom pour debuter la partie .");
@@ -256,9 +260,20 @@ function dropPourcentage() {
 
         
 
+
+function endGame() {
+    scoring[scoring.length] = [];
+    scoring[scoring.length - 1]["name"] = player.name;
+    scoring[scoring.length - 1]["score"] = highscore;
+
+    // Insérer la mise en page du score
+
+    message("<p>Tu as perdu brave héro</p><p>Tu as " + highscore + " de points de score.<p>Ta mémoire sera gravé dans le Panthéon</p>")
+}
+
 /*************************
  *                       *
- * Création des tableaux *
+ * Fonction d'événements *
  *                       *
  *************************/
 
