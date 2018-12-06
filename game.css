@@ -71,3 +71,10 @@ h1{
     position: absolute;
     left: 350px;
 }
+#hpBar{
+    padding-left: 0px;
+    padding-right: 50px;
+}
+.progress{
+    height: 20px;
+}
