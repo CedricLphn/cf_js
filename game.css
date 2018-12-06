@@ -91,3 +91,13 @@ h1{
     font-family: 'Press Start 2P', cursive;
     color: white;
 }
+
+.itemBox {
+    text-align: center;
+    font-size: 50px;
+}
+
+.itemDesc {
+    font-size: 15px;
+
+}
