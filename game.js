@@ -385,6 +385,10 @@ document.getElementById("goshop").addEventListener("click", function() {
 
 })
 
+/*document.getElementById("leaveshop").addEventListener("click", function() {
+    updateBackground(" image de la inventaire ");
+})
+
 /*************************
  *                       *
  * Fonction d'événements *
