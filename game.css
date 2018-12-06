@@ -86,17 +86,21 @@ h1{
 }
 
 .bgGrey{
-    background-color: #071852;
-    border: 1px solid #979398;
-    border-radius: 5px;
-    height: 100%;
-    font-family: 'Press Start 2P', cursive;
+    background-color: #8D6E63;
+    border: 3px ridge #3E2723;
+    border-radius: 15px;
+
+
+    font-family: 'Patua One', cursive;
+
     color: white;
 }
 
 .itemBox {
     text-align: center;
     font-size: 50px;
+    border: 1px solid #3E2723;
+
 }
 
 .itemDesc {
