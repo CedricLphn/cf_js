@@ -453,3 +453,9 @@ document.getElementById("goshop").addEventListener("click", function() {
  document.getElementById("fightMonster").addEventListener("click", function() {
      attack(player, monster);
  })
+ for(let i = 1; i <= 4; i++){
+     console.log("ok");
+     document.getElementById("item"+i).addEventListener("click", function(){
+        useItem(i);
+     })
+ }
