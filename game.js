@@ -428,6 +428,7 @@ document.getElementById("restart").addEventListener('click', function(){
     document.getElementById("game").style.background = "url(assets/day_battle.png)";
 
     document.getElementById("ff").classList.remove("display");
+    document.getElementById("imgDragon").classList.remove("display");
     document.getElementById("scoring").classList.add("display");
 
     start();
