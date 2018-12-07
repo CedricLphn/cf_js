@@ -62,6 +62,8 @@ var shop = {
 
 var switch_page;
 
+var playerIsInventory = false;
+
 if(switch_page){
     clearTimeout(switch_page);
 }
@@ -145,20 +147,20 @@ function attack(player, target) {
         clearInterval(transition);
     }
 
-    let _transition = "player";
+    // let _transition = "player";
 
-    transition = setInterval(function() {
-        if(_transition == "player"){
-            _transition = "monster";
-            document.getElementById("centerPlayer").classList.remove("display");
-            document.getElementById("fightPlayer").classList.add("display");
-        }else {
-            _transition = "player";
-            document.getElementById("centerMonster").classList.remove("display");
-            document.getElementById("fightMonster").classList.add("display");
+    // transition = setInterval(function() {
+    //     if(_transition == "player"){
+    //         _transition = "monster";
+    //         document.getElementById("centerPlayer").classList.remove("display");
+    //         document.getElementById("fightPlayer").classList.add("display");
+    //     }else {
+    //         _transition = "player";
+    //         document.getElementById("centerMonster").classList.remove("display");
+    //         document.getElementById("fightMonster").classList.add("display");
 
-        }
-    },1000);
+    //     }
+    // },1000);
 
     if(firstAttack(player) == true)
     {
@@ -188,14 +190,17 @@ function attack(player, target) {
                 else if(target.hp <= 0) {
                     var victory = '<p>Félicitations ! ' + player.name + " a remporté la victoire. Butin remporté : </p>";
                     message(victory);
+                    document.getElementById("imgDragon").classList.add("display");
                     highscore++;
                     // insérer la fonction loot
                     loot();
+                    document.getElementById("goshop").disabled = false;
                     //break;
                 }       
                 else if(player.hp <= 0) {
                     var gameover = '<p>Défaite ! vous avez été vaincu par ' + target.name + "</p>";
                     message(gameover);
+                    document.getElementById("imgPlayer").classList.add("display");
                     endGame();
                     //break;
                     // insérer fonction fin de partie
@@ -270,16 +275,6 @@ function showMessageLog(text) {
         message(text);
     }, 0); // 3s de délai
 }
-function start () {
-	let insert = prompt("Entrez votre nom pour debuter la partie .");
-	if(insert == null){
-		return(insert);
-	}
-	else {
-		//player.name = insert
-		//on lancera la grosse fonction aventure
-	}
-}
 
 function start () {
     let insert = prompt("Entrez votre nom pour debuter la partie .");
@@ -306,6 +301,7 @@ function start () {
 }
 
 function useItem(potion){
+
     if(potion == undefined) {
         return false;
     }
@@ -338,6 +334,11 @@ function useItem(potion){
     }else {
         message("<p>Tu n'as pas assez de " + potion + "</p>");
     }
+
+    document.getElementById("nbItem1").innerHTML = player.inventory.strengthPotion;
+    document.getElementById("nbItem2").innerHTML = player.inventory.agilityPotion;
+    document.getElementById("nbItem3").innerHTML = player.inventory.staminaPotion;
+    document.getElementById("nbItem4").innerHTML = player.inventory.hpPotion;
 }
 
 function message(text) {
@@ -402,11 +403,20 @@ function buy (id) {
  
 
 function endGame() {
+    isAttack = false;
+    updateBackground();
     scoring[scoring.length] = [];
     scoring[scoring.length - 1]["name"] = player.name;
     scoring[scoring.length - 1]["score"] = highscore;
 
+    document.getElementById("ff").classList.add("display");  
+    document.getElementById("scoring").classList.remove("display");
+    document.getElementById("game").style.backgroundColor = "white";
+
+
+
     // Insérer la mise en page du score
+    document.getElementById("list").innerHTML += "<li>"+player.name+" a tué "+highscore+" monstres";
 
     message("<p>Tu as perdu brave héro</p><p>Tu as " + highscore + " de points de score.<p>Ta mémoire sera gravé dans le Panthéon</p>")
 }
@@ -414,19 +424,64 @@ function endGame() {
 document.getElementById("restart").addEventListener('click', function(){
     player = params;
     monster = paramsMonster;
+    isAttack = true;
+    document.getElementById("game").style.background = "url(assets/day_battle.png)";
+
+    document.getElementById("ff").classList.remove("display");
+    document.getElementById("scoring").classList.add("display");
+
     start();
 });
 
 document.getElementById("goshop").addEventListener("click", function() {
     isAttack = false;
+    document.getElementById("leaveshop").disabled = false;
     document.getElementById("shop").classList.remove("display");
     document.getElementById("goshop").disabled = true;
+
+    document.getElementById("imgPlayer").classList.add("display");
+    document.getElementById("imgPlayerCenter").classList.add("display");
+    document.getElementById("imgDragonCenter").classList.add("display");
+    document.getElementById("imgDragon").classList.add("display");
+
     updateBackground("assets/tavern.jpg");
 
 })
 
-/*document.getElementById("leaveshop").addEventListener("click", function() {
-    updateBackground(" image de la inventaire ");
+document.getElementById("leaveshop").addEventListener("click", function() {
+    document.getElementById("goaventure").disabled = false;
+    document.getElementById("inventory").classList.remove("display");
+    document.getElementById("leaveshop").disabled = true;
+    document.getElementById("shop").classList.add("display");
+    playerIsInventory = true;
+
+
+
+    document.getElementById("nbItem1").innerHTML = player.inventory.strengthPotion;
+    document.getElementById("nbItem2").innerHTML = player.inventory.agilityPotion;
+    document.getElementById("nbItem3").innerHTML = player.inventory.staminaPotion;
+    document.getElementById("nbItem4").innerHTML = player.inventory.hpPotion;
+
+})
+
+
+// Aventure
+document.getElementById("goaventure").addEventListener("click", function() {
+    document.getElementById("fight").classList.remove("display");
+    document.getElementById("inventory").classList.add("display");
+    document.getElementById("shop").classList.add("display");
+
+    document.getElementById("imgPlayer").classList.remove("display");
+    document.getElementById("imgDragon").classList.remove("display");
+    playerIsInventory = false;
+
+
+
+    if(night) {
+        document.getElementById("game").style.background = "url(assets/night_battle.jpg)";
+    }else {
+        document.getElementById("game").style.background = "url(assets/day_battle.png)";
+    }
 })
 
 /*************************
@@ -446,16 +501,47 @@ document.getElementById("goshop").addEventListener("click", function() {
  for(let i = 1; i <= 4; i++){
      console.log("ok");
      document.getElementById("buy"+i).addEventListener("click", function(){
-        buy(i);
+        if(!playerIsInventory)
+        {
+            buy(i);
+        }
+        playerIsInventory = false;
      })
  }
 
  document.getElementById("fightMonster").addEventListener("click", function() {
      attack(player, monster);
+     playerIsInventory = false;
+
  })
+
+ // Inventaire
  for(let i = 1; i <= 4; i++){
-     console.log("ok");
+    
+    let potion;
+    switch(i) {
+        case 1:
+        potion = "strengthPotion";
+        document.getElementById("nbItem1").innerHTML = player.inventory.strengthPotion;
+        break;
+        case 2:
+        potion = "agilityPotion";
+        document.getElementById("nbItem2").innerHTML = player.inventory.agilityPotion;
+        break;
+        case 3:
+        potion = "staminaPotion";
+        document.getElementById("nbItem3").innerHTML = player.inventory.staminaPotion;
+        break;
+        case 4:
+        potion = "hpPotion";
+        document.getElementById("nbItem4").innerHTML = player.inventory.hpPotion;
+    }
+
      document.getElementById("item"+i).addEventListener("click", function(){
-        useItem(i);
+         console.log(playerIsInventory);
+        if(playerIsInventory)
+        {
+            useItem(potion);
+        }
      })
  }

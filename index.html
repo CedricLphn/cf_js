@@ -51,7 +51,14 @@
         <!-- Ligne BOX JEU -->
         <div class="row">
                 <div id="game" class="col-md-10 offset-md-1">
-                    <div class="container-fluid">
+                    <div id="scoring" class="display">
+                        <ul id="list">
+                        </ul>
+                        <button id="restart" class="btn btn-primary">
+                                Recommencer la partie
+                        </button>
+                    </div>
+                    <div id="ff" class="container-fluid">
                         <div id="hpAndShop" class="row">
                             <div id="hpBar" class="col-md-4">
                                     <div class="playerbar progress">
@@ -89,69 +96,68 @@
                         </div>
                         <div id="fight" class="row">
                             <div id="fightPlayer" class="col-md-4">
-                                <img src="assets/player.png" >
+                                <img src="assets/player.png" id="imgPlayer" >
                             </div>
                             <div id="fightArea" class="col-md-4">
                                 <!-- ZONE DE COMBAT -->
                                 <div id="centerPlayer" class="display">
-                                    <img src="assets/player.png" >
+                                    <img src="assets/player.png" id="imgPlayerCenter">
                                 </div>
                                 <div id="centerDragon" class="display">
-                                    <img src="assets/dragon.png" >
+                                    <img src="assets/dragon.png" id="imgDragonCenter">
                                 </div>
                             </div>
                             <div id="fightMonster" class="col-md-4">
-                                <img src="assets/dragon.png" >
+                                <img src="assets/dragon.png" id="imgDragon">
                             </div>
                         </div>
                         <div id="chatAndInventory"class="row">
                             <div id="box" class="col-md-6">
                                 <!-- PLACEMENT CHATBOX -->
                             </div>
-                            <div id="inventory" class="col-md-5 offset-md-1">
+                            <div id="inventory" class="col-md-5 offset-md-1 display">
                                     <div class="row bgGrey">
                                         <div class="col inventoryBox" id="item1">
-                                            <div class="fas fa-prescription-bottle"></div>
-                                            <div class="inventoryDesc"><p>Potion de force</p>
-                                            <p>x 2</p></div>
+                                            <div class="big fas fa-prescription-bottle"></div>
+                                            <div class="inventoryDesc">
+                                            <p>x <span id="nbItem1"></span></p></div>
                                         </div>
                                         <div class="col inventoryBox" id="item2">
-                                                <div class="fas fa-prescription-bottle"></div>
-                                                <div class="inventoryDesc"><p>Potion d'agilité</p>
-                                                <p>x 2</p></div>
+                                                <div class="big fas fa-prescription-bottle"></div>
+                                                <div class="inventoryDesc">
+                                                <p>x <span id="nbItem2"></span></p></div>
                                         </div>
-                                        <div class="w-100"></div>
                                         <div class="col inventoryBox" id="item3">
-                                                <div class="fas fa-prescription-bottle"></div>
-                                                <div class="inventoryDesc"><p>Potion d'endurance</p>
-                                                <p>x 2</p></div>
+                                                <div class="big fas fa-prescription-bottle"></div>
+                                                <div class="inventoryDesc">
+                                                <p>x <span id="nbItem3"></span></p></div>
                                         </div>
                                         <div class="col inventoryBox" id="item4">
-                                                <div class="fas fa-prescription-bottle"></div>
-                                                <div class="inventoryDesc"><p>Potion de soin</p>
-                                                <p>x 5</p></div>
+                                                <div class="big fas fa-prescription-bottle"></div>
+                                                <div class="inventoryDesc">
+                                                <p>x <span id="nbItem4"></span></p></div>
                                         </div>
                                     </div>
                             </div>
                         </div>
                         <div id="buttons" class="row">
                                     <div class="col">
-                                        <button id="goaventure" type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <button id="goaventure" type="button" class="btn btn-dark" disabled="disabled">
                                             Partir à l'aventure
                                         </button>
                                     </div>
                                     <div class="col">
-                                        <button id="goshop" type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <button id="goshop" type="button" class="btn btn-secondary" disabled="disabled">
                                             Aller à la boutique
                                         </button>
                                     </div>
                                     <div class="col">
-                                        <button id="leaveshop" type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <button id="leaveshop" class="btn btn-secondary" disabled="disabled">
                                             Ouvrir l'inventaire
                                         </button>
                                     </div>
                                     <div class="col">
-                                        <button id="restart" type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <button id="restart" type="button" class="btn btn-dark" disabled="disabled">
                                             Recommencer la partie
                                         </button>
                                     </div>

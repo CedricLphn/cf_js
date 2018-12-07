@@ -113,7 +113,14 @@ h1{
 }
 
 .inventoryDesc {
-    font-size: 10px;
+    font-size: 15px;
+    text-align:center;
+
+}
+
+.big {
+    font-size: 60px;
+    text-align:center;
 
 }
 
