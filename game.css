@@ -1,5 +1,5 @@
 #game{
-    height: 600px;
+    height: 630px;
     border: 8px inset #076da4;
     border-radius: 5px;
     background: url(assets/day_battle.png);
@@ -59,15 +59,14 @@ h1{
     padding-bottom: 100px;
 }
 #hpAndShop{
-    border: 1px solid red;
     margin-top: 15px;
 }
 #fight{
-    border: 1px solid red;
+    : 1px solid red;
     height: 330px;
 }
 #shop{
-    border: 1px solid red;
+    : 1px solid red;
     height: 275px;
     position: absolute;
     left: 350px;
@@ -84,7 +83,7 @@ h1{
 
 .bgGrey{
     background-color: #8D6E63;
-    border: 3px ridge #3E2723;
+    : 3px ridge #3E2723;
     border-radius: 15px;
 
 
@@ -140,7 +139,6 @@ h1{
     font-size: 10px;
 }
 #buttons{
-    border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -152,9 +150,4 @@ h1{
     font-family: 'Press Start 2P', cursive;
     font-size: 8px;
 }
-#fightArea, #fightMonster, #fightPlayer{
-    border: 1px solid blue;
-}
-#inventory{
-    border: 1px solid red;
-}
+
