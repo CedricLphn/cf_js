@@ -306,7 +306,7 @@ function useItem(potion){
         return false;
     }
     if(potion == "strengthPotion" && player.inventory.strengthPotion > 0) {
-        monsterStrength++;
+        player.strength++;
         player.inventory.strengthPotion = player.inventory.strengthPotion - 1;
         message("<p>Ta force a été augmenté de 1</p><p>Tu as dorénavant " + player.strength +" de force</p>");
     }else if(potion == "agilityPotion" && player.inventory.agilityPotion > 0) {
