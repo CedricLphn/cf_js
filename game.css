@@ -77,37 +77,39 @@ h1{
     padding-right: 50px;
     height: 42px;
 }
+
 .progress{
     height: 20px;
 }
 
 .bgGrey{
     background-color: #8D6E63;
-    : 3px ridge #3E2723;
     border-radius: 15px;
+    padding-top: 20px;
 
 
     font-family: 'Patua One', cursive;
 
     color: white;
 }
+#inventory{
+    padding-left: 20px;
+}
 
 
 .itemBox {
     text-align: center;
     font-size: 50px;
-    border: 1px solid #3E2723;
 }
 
 .itemDesc {
     font-size: 8px;
-
 }
 
 .inventorybox {
     text-align: center;
     font-size: 20px;
-    border: 1px solid #3E2723;
+    
 
 }
 
@@ -131,12 +133,14 @@ h1{
     border: solid 2px black;
     border-radius: 8px;
     margin: 16px auto;
+    padding-top: 10px;
     position: relative;
     height: 150px;
     background-color: black;
-    opacity: 0.70;
+    opacity: 0.50;
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
+    color: white;
 }
 #buttons{
     display: flex;
