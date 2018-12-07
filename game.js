@@ -385,7 +385,7 @@ function buy (id) {
     player.inventory.strengthPotion += 1;
 }else if (id == 2 && player.po >= shop.agilityPotion.price){
     message("Vous avez acheté une potion de force");
-    player.po = player.po - shop.agilityPotionp.price;
+    player.po = player.po - shop.agilityPotion.price;
     player.inventory.agilityPotion += 1;
 }else if (id == 3 && player.po >= shop.staminaPotion.price){
     message(" Vous avez acheté une potion d'endurance");
