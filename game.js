@@ -7,11 +7,11 @@
 
 /*************************
  *                       *
- *  Création des objets  *
+ *  Variables & Objets   *
  *                       *
  *************************/
 
-var isAttack = true;
+var isAttack = true; // Bloquer le changement de background lorsqu'on est pas en aventure
 
 const params = {
     name : null,
@@ -60,9 +60,23 @@ var shop = {
     }
 };
 
-var switch_page;
 
-var playerIsInventory = false;
+var switch_page; // passation intro --> aventure
+
+var playerIsInventory = false; // Bloqué achat lorsque joueur est dans son inventaire
+
+var night = false;
+var timer;
+var highscore = 0;
+
+var scoring = [];
+
+/*************************
+ *                       *
+ *  Start Page           *
+ *                       *
+ *************************/
+
 
 if(switch_page){
     clearTimeout(switch_page);
@@ -86,24 +100,43 @@ document.addEventListener("keypress", function() {
 })
 document.removeEventListener("keypress", function(){ return; });
 
+// Introduction
+function start () {
+    let insert = prompt("Entrez votre nom pour debuter la partie .");
+    if(insert == null || insert == ''){
+        start();
+    }
+    else {
+        player.name = insert;
+        console.log(player.name);
+        timer = setInterval(function(){
+            if(night == true) {
+                night = false;
+            }else {
+                night = true;
+            }
+        
+            if(isAttack == true) {
+                updateBackground(night);
+            }
+        
+        }, 45000);
+        //on lancera la grosse fonction aventure
+    }
+}
 
-/***********************
-*                      *
-*  Gestion de la nuit  *
-*                      *
-***********************/
 
-var night = false;
-var timer;
-var highscore = 0;
+/*************************
+ *                       *
+ *  Gestion de la nuit   *
+ *                       *
+ *************************/
 
-var scoring = [];
 
 
 if(timer){
     clearInterval(timer);
 }
-
 
 function updateBackground(variable) {
     if(isAttack == true){
@@ -117,13 +150,18 @@ function updateBackground(variable) {
     }
 }
 
-
-
+/*************************
+ *                       *
+ *  AVENTURE             *
+ *                       *
+ *************************/
 
 
 function generateMonster() {
     let name = ["Rat", "Loup", "Tauren", "Aigle", "Ananas", "Cactus"];
     let suffix = ["de la nuit", "mutant", "affamé", "assassin"];
+
+    
 
     console.log(Math.floor(Math.random() * (name.length) + 1));
     console.log(Math.floor(Math.random() * (suffix.length)) + 1);
@@ -131,8 +169,15 @@ function generateMonster() {
     monster.name =  name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
     return name[Math.floor(Math.random() * (name.length))] + " " + suffix[Math.floor(Math.random() * (suffix.length))];
 }
-//buttonreset.addEventListener('click',Reset,false);
+
+// Fonction attaquer
 function attack(player, target) {
+    
+    var strengthWinMonster = monster.strength;
+    var hpWinMonster = monster.hp;
+
+    
+
     firstAttack(player);
     generateMonster();
     var monsterStrength;
@@ -142,25 +187,13 @@ function attack(player, target) {
         monsterStrength = target.strength;
     }
 
+    console.log(monsterStrength)
+
     var transition;
     if(transition){
         clearInterval(transition);
     }
 
-    // let _transition = "player";
-
-    // transition = setInterval(function() {
-    //     if(_transition == "player"){
-    //         _transition = "monster";
-    //         document.getElementById("centerPlayer").classList.remove("display");
-    //         document.getElementById("fightPlayer").classList.add("display");
-    //     }else {
-    //         _transition = "player";
-    //         document.getElementById("centerMonster").classList.remove("display");
-    //         document.getElementById("fightMonster").classList.add("display");
-
-    //     }
-    // },1000);
 
     if(firstAttack(player) == true)
     {
@@ -192,18 +225,17 @@ function attack(player, target) {
                     message(victory);
                     document.getElementById("imgDragon").classList.add("display");
                     highscore++;
-                    // insérer la fonction loot
                     loot();
+                    monster.strength = strengthWinMonster;
+                    monster.hp = hpWinMonster;
                     document.getElementById("goshop").disabled = false;
-                    //break;
+
                 }       
                 else if(player.hp <= 0) {
                     var gameover = '<p>Défaite ! vous avez été vaincu par ' + target.name + "</p>";
                     message(gameover);
                     document.getElementById("imgPlayer").classList.add("display");
                     endGame();
-                    //break;
-                    // insérer fonction fin de partie
                 }
             }
         }
@@ -214,48 +246,46 @@ function attack(player, target) {
             if(target.hp >= 0)
             {
                 var attackTargetVsPlayer = '<p>' + target.name + " attaque " + player.name + " et lui inflige " + target.strength + " points de dégats</p>";
-                showMessageLog(attackTargetVsPlayer);
+                message(attackTargetVsPlayer);
 
                 player.hp = player.hp - target.strength;
 
                 var textPlayerVsTarget = '<p>' + player.name + " perds " + target.strength + " de points de vie, " + player.hp + " points de vie restants</p>";
-                showMessageLog(textPlayerVsTarget);
+                message(textPlayerVsTarget);
 
                 if(target.hp > 0) {
                     var attackPlayerVsTarget = '<p>' + player.name + " attaque " + target.name + " et lui inflige " + monsterStrength + " points de dégats</p>";
-                    showMessageLog(attackPlayerVsTarget);
+                    message(attackPlayerVsTarget);
 
                     target.hp = target.hp - monsterStrength;
 
                     var textTargetVsPlayer = '<p>' + target.name + " perds " + monsterStrength + " de points de vie, " + target.hp + " points de vie restants</p>";
-                    showMessageLog(textTargetVsPlayer);
+                    message(textTargetVsPlayer);
                     
                 }
                 else if(target.hp <= 0) {
                     var victory = '<p>' + "Félicitations ! " + player.name + " a remporté la victoire. Butin remporté :</p>";
-                    showMessageLog(victory);
+                    message(victory);
                     highscore++;
-                    // insérer la fonction loot
+                    monster.strength = strengthWinMonster;
+                    monster.hp = hpWinMonster;
                     loot();
-                    //break;
 
                 }       
                 else {
                     var gameover = '<p> + "Défaite ! vous avez été vaincu par ' + target.name + '</p>';
-                    showMessageLog(gameover);
+                    message(gameover);
                     endGame();
-                    //break;
-                    // insérer la fonction fin de partie
+
                 }
             }
         }
     }
     target.hp = target.stamina;
-    monsterStrength+1;
 }
-// buttonreset.addEventListener('click',Reset,false);
 
 
+// Qui attaque le premier ? (fonction)
 function firstAttack(player) {
     let random = Math.random();
     if(player.agility / 100 < random.toFixed(2)) {
@@ -266,45 +296,149 @@ function firstAttack(player) {
     }
 }
 
-function showMessageLog(text) {
-    var timer;
-    if(timer) {
-        clearTimeout(timer);
-    }
-    timer = setTimeout(function() {
-        message(text);
-    }, 0); // 3s de délai
-}
+// Fonction loot
+function loot(){  
+    player.po += 3;
+    dropPourcentage();
+    if(dropPourcentage() == true){
+     player.inventory.monsterHpPotion + 1;
+      }
+ }
+ 
+// Le pourcentage de chance pour drop une potion de soin
+ 
+function dropPourcentage() {
+     var resultPlayer = 0.1;
+     var resultIA = Math.random();
+     if(resultPlayer > resultIA ) {
+         return true;
+     }
+     else{
+         return false;
+     }
+ }
 
-function start () {
-    let insert = prompt("Entrez votre nom pour debuter la partie .");
-    if(insert == null || insert == ''){
-        start();
+ // Bouton pour aller à l'aventure
+document.getElementById("goaventure").addEventListener("click", function() {
+    document.getElementById("fight").classList.remove("display");
+    document.getElementById("inventory").classList.add("display");
+    document.getElementById("shop").classList.add("display");
+
+    document.getElementById("imgPlayer").classList.remove("display");
+    document.getElementById("imgDragon").classList.remove("display");
+    playerIsInventory = false;
+
+
+
+    if(night) {
+        document.getElementById("game").style.background = "url(assets/night_battle.jpg)";
+    }else {
+        document.getElementById("game").style.background = "url(assets/day_battle.png)";
     }
-    else {
-        player.name = insert;
-        console.log(player.name);
-        timer = setInterval(function(){
-            if(night == true) {
-                night = false;
-            }else {
-                night = true;
-            }
-        
-            if(isAttack == true) {
-                updateBackground(night);
-            }
-        
-        }, 45000);
-        //on lancera la grosse fonction aventure
-    }
-}
+})
+
+
+
+ /*************************
+ *                       *
+ * Fonction d'achat      *
+ *                       *
+ *************************/
+
+ // Génération des events Listener en fonction des items
+ for(let i = 1; i <= 4; i++){
+     console.log("ok");
+     document.getElementById("buy"+i).addEventListener("click", function(){
+        if(!playerIsInventory)
+        {
+            buy(i);
+        }
+        playerIsInventory = false;
+     })
+ }
+
+ document.getElementById("fightMonster").addEventListener("click", function() {
+     attack(player, monster);
+     playerIsInventory = false;
+
+ })
+
+ // Bouton 
+ document.getElementById("leaveshop").addEventListener("click", function() {
+    document.getElementById("goaventure").disabled = false;
+    document.getElementById("inventory").classList.remove("display");
+    document.getElementById("leaveshop").disabled = true;
+    document.getElementById("shop").classList.add("display");
+    playerIsInventory = true;
+
+
+
+    document.getElementById("nbItem1").innerHTML = player.inventory.strengthPotion;
+    document.getElementById("nbItem2").innerHTML = player.inventory.agilityPotion;
+    document.getElementById("nbItem3").innerHTML = player.inventory.staminaPotion;
+    document.getElementById("nbItem4").innerHTML = player.inventory.hpPotion;
+
+})
+
+// Acheter une potion
+
+function buy (id) {
+
+    if (id == 1 && player.po >= shop.strengthPotion.price){
+       message("Vous avez acheté une potion de force");
+       player.po = player.po - shop.strengthPotion.price;
+       player.inventory.strengthPotion += 1;
+   }else if (id == 2 && player.po >= shop.agilityPotion.price){
+       message("Vous avez acheté une potion de force");
+       player.po = player.po - shop.agilityPotion.price;
+       player.inventory.agilityPotion += 1;
+   }else if (id == 3 && player.po >= shop.staminaPotion.price){
+       message(" Vous avez acheté une potion d'endurance");
+       player.po = player.po - shop.staminaPotion.price;
+       player.inventory.staminaPotion += 1;
+   }else if (id == 4 && player.po >= shop.hpPotion.price){
+       message(" Vous avez acheté une potion de vie");
+       player.po = player.po - shop.hpPotion.price;
+       player.inventory.hpPotion += 1; 
+   }else {
+       message("Vous n'avez pas assez de pièces d'or");
+   }
+   
+   }
+   
+   
+   document.getElementById("goshop").addEventListener("click", function() {
+       isAttack = false;
+       document.getElementById("leaveshop").disabled = false;
+       document.getElementById("shop").classList.remove("display");
+       document.getElementById("goshop").disabled = true;
+   
+       document.getElementById("imgPlayer").classList.add("display");
+       document.getElementById("imgPlayerCenter").classList.add("display");
+       document.getElementById("imgDragonCenter").classList.add("display");
+       document.getElementById("imgDragon").classList.add("display");
+   
+       updateBackground("assets/tavern.jpg");
+   
+   })
+   
+
+/*************************
+ *                       *
+ * Fonction inventaire   *
+ *                       *
+ *************************/
+
+
+ // Utiliser une potion
+// On reprend la clé du modèle
 
 function useItem(potion){
 
     if(potion == undefined) {
         return false;
     }
+
     if(potion == "strengthPotion" && player.inventory.strengthPotion > 0) {
         player.strength++;
         player.inventory.strengthPotion = player.inventory.strengthPotion - 1;
@@ -341,183 +475,9 @@ function useItem(potion){
     document.getElementById("nbItem4").innerHTML = player.inventory.hpPotion;
 }
 
-function message(text) {
-    let timer;
-    if(timer){
-        clearTimeout(timer);
-    }
-    timer = setTimeout(function() {
-    document.getElementById('box').innerHTML = '';
-    }, 3000);
+// On génère les clicks des items
 
-    document.getElementById('box').innerHTML += text;
-    console.log(text);
-}
-
-function loot(){  
-   player.po += 3;
-   dropPourcentage();
-   if(dropPourcentage() == true){
-    player.inventory.monsterHpPotion + 1;
-     }
-}
-
- 
-
-function dropPourcentage() {
-    var resultPlayer = 0.1;
-    var resultIA = Math.random();
-    if(resultPlayer > resultIA ) {
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-        
-
-function buy (id) {
-
- if (id == 1 && player.po >= shop.strengthPotion.price){
-    message("Vous avez acheté une potion de force");
-    player.po = player.po - shop.strengthPotion.price;
-    player.inventory.strengthPotion += 1;
-}else if (id == 2 && player.po >= shop.agilityPotion.price){
-    message("Vous avez acheté une potion de force");
-    player.po = player.po - shop.agilityPotion.price;
-    player.inventory.agilityPotion += 1;
-}else if (id == 3 && player.po >= shop.staminaPotion.price){
-    message(" Vous avez acheté une potion d'endurance");
-    player.po = player.po - shop.staminaPotion.price;
-    player.inventory.staminaPotion += 1;
-}else if (id == 4 && player.po >= shop.hpPotion.price){
-    message(" Vous avez acheté une potion de vie");
-    player.po = player.po - shop.hpPotion.price;
-    player.inventory.hpPotion += 1; 
-}else {
-    message("Vous n'avez pas assez de pièces d'or");
-}
-
-}
- 
-
-function endGame() {
-    isAttack = false;
-    updateBackground();
-    scoring[scoring.length] = [];
-    scoring[scoring.length - 1]["name"] = player.name;
-    scoring[scoring.length - 1]["score"] = highscore;
-
-    document.getElementById("ff").classList.add("display");  
-    document.getElementById("scoring").classList.remove("display");
-    document.getElementById("game").style.backgroundColor = "white";
-
-
-
-    // Insérer la mise en page du score
-    document.getElementById("list").innerHTML += "<li>"+player.name+" a tué "+highscore+" monstres";
-
-    message("<p>Tu as perdu brave héro</p><p>Tu as " + highscore + " de points de score.<p>Ta mémoire sera gravé dans le Panthéon</p>")
-}
-
-document.getElementById("restart").addEventListener('click', function(){
-    player = params;
-    monster = paramsMonster;
-    isAttack = true;
-    document.getElementById("game").style.background = "url(assets/day_battle.png)";
-
-    document.getElementById("ff").classList.remove("display");
-    document.getElementById("imgDragon").classList.remove("display");
-    document.getElementById("scoring").classList.add("display");
-
-    start();
-});
-
-document.getElementById("goshop").addEventListener("click", function() {
-    isAttack = false;
-    document.getElementById("leaveshop").disabled = false;
-    document.getElementById("shop").classList.remove("display");
-    document.getElementById("goshop").disabled = true;
-
-    document.getElementById("imgPlayer").classList.add("display");
-    document.getElementById("imgPlayerCenter").classList.add("display");
-    document.getElementById("imgDragonCenter").classList.add("display");
-    document.getElementById("imgDragon").classList.add("display");
-
-    updateBackground("assets/tavern.jpg");
-
-})
-
-document.getElementById("leaveshop").addEventListener("click", function() {
-    document.getElementById("goaventure").disabled = false;
-    document.getElementById("inventory").classList.remove("display");
-    document.getElementById("leaveshop").disabled = true;
-    document.getElementById("shop").classList.add("display");
-    playerIsInventory = true;
-
-
-
-    document.getElementById("nbItem1").innerHTML = player.inventory.strengthPotion;
-    document.getElementById("nbItem2").innerHTML = player.inventory.agilityPotion;
-    document.getElementById("nbItem3").innerHTML = player.inventory.staminaPotion;
-    document.getElementById("nbItem4").innerHTML = player.inventory.hpPotion;
-
-})
-
-
-// Aventure
-document.getElementById("goaventure").addEventListener("click", function() {
-    document.getElementById("fight").classList.remove("display");
-    document.getElementById("inventory").classList.add("display");
-    document.getElementById("shop").classList.add("display");
-
-    document.getElementById("imgPlayer").classList.remove("display");
-    document.getElementById("imgDragon").classList.remove("display");
-    playerIsInventory = false;
-
-
-
-    if(night) {
-        document.getElementById("game").style.background = "url(assets/night_battle.jpg)";
-    }else {
-        document.getElementById("game").style.background = "url(assets/day_battle.png)";
-    }
-})
-
-/*************************
- *                       *
- * Fonction d'événements *
- *                       *
- *************************/
-
-
- /*************************
- *                       *
- * Fonction d'achat      *
- *                       *
- *************************/
-
- // Boutique
- for(let i = 1; i <= 4; i++){
-     console.log("ok");
-     document.getElementById("buy"+i).addEventListener("click", function(){
-        if(!playerIsInventory)
-        {
-            buy(i);
-        }
-        playerIsInventory = false;
-     })
- }
-
- document.getElementById("fightMonster").addEventListener("click", function() {
-     attack(player, monster);
-     playerIsInventory = false;
-
- })
-
- // Inventaire
- for(let i = 1; i <= 4; i++){
+for(let i = 1; i <= 4; i++){
     
     let potion;
     switch(i) {
@@ -546,3 +506,65 @@ document.getElementById("goaventure").addEventListener("click", function() {
         }
      })
  }
+
+/*************************
+ *                       *
+ * Fonction restart & hs *
+ *                       *
+ *************************/
+
+
+// END GAME
+
+function endGame() {
+    isAttack = false;
+    updateBackground();
+    scoring[scoring.length] = [];
+    scoring[scoring.length - 1]["name"] = player.name;
+    scoring[scoring.length - 1]["score"] = highscore;
+
+    document.getElementById("ff").classList.add("display");  
+    document.getElementById("scoring").classList.remove("display");
+    document.getElementById("game").style.backgroundColor = "white";
+
+
+
+    // Insérer la mise en page du score
+    document.getElementById("list").innerHTML += "<li>"+player.name+" a tué "+highscore+" monstres";
+
+    message("<p>Tu as perdu brave héro</p><p>Tu as " + highscore + " de points de score.<p>Ta mémoire sera gravé dans le Panthéon</p>")
+}
+
+// Restart
+
+ document.getElementById("restart").addEventListener('click', function(){
+    player = params;
+    monster = paramsMonster;
+    isAttack = true;
+    document.getElementById("game").style.background = "url(assets/day_battle.png)";
+
+    document.getElementById("ff").classList.remove("display");
+    document.getElementById("imgDragon").classList.remove("display");
+    document.getElementById("scoring").classList.add("display");
+
+    start();
+});
+
+/*************************
+ *                       *
+ * Utilitaire            *
+ *                       *
+ *************************/
+
+// Afficher un message dans la message box
+function message(text) {
+    let timer;
+    if(timer){
+        clearTimeout(timer);
+    }
+    timer = setTimeout(function() {
+    document.getElementById('box').innerHTML = '';
+    }, 3000);
+
+    document.getElementById('box').innerHTML += text;
+}

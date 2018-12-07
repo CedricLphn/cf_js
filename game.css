@@ -61,12 +61,11 @@ h1{
 #hpAndShop{
     margin-top: 15px;
 }
+
 #fight{
-    : 1px solid red;
     height: 330px;
 }
 #shop{
-    : 1px solid red;
     height: 275px;
     position: absolute;
     left: 350px;
@@ -155,3 +154,23 @@ h1{
     font-size: 8px;
 }
 
+
+.red {
+    color:red;
+}
+
+.green {
+    color: green;
+}
+
+.violet {
+    color: violet;
+}
+
+.blue {
+    color :blue;
+}
+
+.or {
+    color: gold;
+}
